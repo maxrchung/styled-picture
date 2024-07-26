@@ -11,24 +11,33 @@ const StyledImage = styled.img`
 export default function Home() {
   return (
     <>
-      <p>
-        This picture loads as expected. I only download "a.avif" in network tab.
-      </p>
+      <p>This picture loads as expected. Only a.avif in network tab.</p>
 
       <picture>
         <source type="image/avif" srcSet="a.avif" />
-        <img src="a.png" />
+        <img src="a.jpg" alt="" />
       </picture>
 
       <p>
-        This picture does not load as expected. I am downloading both "b.png"
-        and "b.avif" in network tab.
+        This picture does not load as expected. Both b.jpg and b.avif are
+        downloaded in network tab even though only b.avif is eventually shown.
       </p>
 
       <StyledPicture>
         <source type="image/avif" srcSet="b.avif" />
-        <StyledImage src="b.png" />
+        <StyledImage src="b.jpg" alt="" />
       </StyledPicture>
+
+      <p>
+        This example also doesn't work. It seems to be caused by style tag
+        getting added in picture.
+      </p>
+
+      <picture>
+        <source type="image/avif" srcSet="c.avif" />
+        <style />
+        <img src="c.jpg" alt="" />
+      </picture>
     </>
   );
 }
